@@ -1,11 +1,13 @@
 from llama_index.core.workflow import Workflow, step, Context, StartEvent, StopEvent
 from .events import *
 
+
 class AnalysisWorkflow(Workflow):
     
     @step
     async def query_creator(self, ctx: Context, event: StartEvent) -> ScraperEvent:
         pass
+        
 
     @step
     async def scraper(self, ctx: Context, event: ScraperEvent):

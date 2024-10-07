@@ -1,4 +1,5 @@
 from llama_index.core.workflow import Event
+from pydantic import BaseModel, Field
 
 class ScraperEvent(Event):
     queries : list[str]
@@ -31,3 +32,6 @@ class ResultEvent(Event):
     source: str
     content: str
 
+class Queries(BaseModel):
+    queries : list[str] = Field(description="")
+    
