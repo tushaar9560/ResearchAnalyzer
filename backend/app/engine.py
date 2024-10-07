@@ -1,7 +1,6 @@
 from llama_index.core.workflow import Workflow, step, Context, StartEvent, StopEvent
 from .events import *
 
-
 class AnalysisWorkflow(Workflow):
     
     @step
