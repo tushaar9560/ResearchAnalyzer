@@ -7,7 +7,6 @@ class AnalysisWorkflow(Workflow):
     async def query_creator(self, ctx: Context, event: StartEvent) -> ScraperEvent:
         pass
         
-
     @step
     async def scraper(self, ctx: Context, event: ScraperEvent):
         pass
@@ -28,9 +27,9 @@ class AnalysisWorkflow(Workflow):
     async def methodologies(self, event: MethodologiesEvent):
         pass
 
-    @step
-    async def lone_wolf(self, event: LoneLLMEvent):
-        pass
+    # @step
+    # async def lone_wolf(self, event: LoneLLMEvent):
+    #     pass
 
     @step
     async def collector(self, event: ResultEvent)-> StopEvent:

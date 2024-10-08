@@ -24,9 +24,9 @@ class MethodologiesEvent(Event):
     query : str
     is_sequential : bool
 
-class LoneLLMEvent(Event):
-    context: str
-    query: str
+# class LoneLLMEvent(Event):
+#     context: str
+#     query: str
 
 class ResultEvent(Event):
     source: str
@@ -34,4 +34,3 @@ class ResultEvent(Event):
 
 class Queries(BaseModel):
     queries : list[str] = Field(description="")
-    
