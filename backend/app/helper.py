@@ -1,5 +1,5 @@
 import uuid
-from .schema import Conversation
+from .schema import Conversation, Message
 
 
 def prepare_conversation(memory: Conversation) -> str:
@@ -11,10 +11,11 @@ def prepare_conversation(memory: Conversation) -> str:
     Returns:
         str - the formatted conversation
     '''
-    context = ""
-    for message in memory.messages:
-        context += message.role + ": " + message.content
-    return context
+    try:
+        context = "\n".join([f"{message.role}: {message.content}" for message in memory.messages])
+        return context
+    except Exception as e:
+        raise ValueError(f"Error preparing conversation")
 
 def create_conversation() -> Conversation:
     '''
@@ -24,3 +25,19 @@ def create_conversation() -> Conversation:
         Conversation - the newly created conversation with defined schema
     '''
     return Conversation(messages=[], id_=str(uuid.uuid4()))
+
+def add_message_to_conversation(conversation: Conversation, role: str, content: str) -> Conversation:
+    """
+    Adds a new message to an existing conversation.
+
+    Args:
+        conversation (Conversation): The existing conversation.
+        role (str): The role of the message sender.
+        content (str): The content of the message.
+
+    Returns:
+        Conversation: The updated conversation.
+    """
+    new_message = Message(role=role, content=content)
+    conversation.messages.append(new_message)
+    return conversation
