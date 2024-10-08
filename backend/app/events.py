@@ -1,36 +1,17 @@
 from llama_index.core.workflow import Event
 from pydantic import BaseModel, Field
+from typing import List, Optional
+from .schema import *
+
 
 class ScraperEvent(Event):
-    queries : list[str]
+    queries: List[str]
 
-class ResearchGapEvent(Event):
-    context : str
-    query : str
-    is_sequential : bool
 
-class RelatedWorksEvent(Event):
-    context : str
-    query : str
-    is_sequential : bool
+class ResearchAnalysisEvent(Event):
+    context: str
+    papers: List[Paper] = Field(..., description="List of scraped papers")
 
-class ProblemStatementsEvent(Event):
-    context : str
-    query : str
-    is_sequential : bool
 
-class MethodologiesEvent(Event):
-    context : str
-    query : str
-    is_sequential : bool
-
-# class LoneLLMEvent(Event):
-#     context: str
-#     query: str
-
-class ResultEvent(Event):
-    source: str
-    content: str
-
-class Queries(BaseModel):
-    queries : list[str] = Field(description="")
+class UserRequestEvent(Event):
+    request_type

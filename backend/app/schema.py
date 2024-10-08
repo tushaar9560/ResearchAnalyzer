@@ -40,12 +40,6 @@ class ResearchTrend(BaseModel):
     growth_rate: Optional[float] = None
 
 
-class ResearchIdeas(BaseModel):
-    title: str
-    description: str
-    related_gaps: List[str] = Field(default_factory=list, description="Descriptions of related research gaps")
-
-
 class InitialAnalysisResult(BaseModel):
     trends: List[ResearchTrend]
     gaps: List[ResearchGap]
@@ -53,29 +47,9 @@ class InitialAnalysisResult(BaseModel):
     papers: List[Paper]
 
 
-class UserRequest(BaseModel):
-    request_type: str = Field(..., description="Type of request: 'problem statements' or 'methodologies'")
-    initial_result: InitialAnalysisResult
-
-
-class ProblemStatement(BaseModel):
-    statement: str
-    gaps: List[str]
-    research_ideas: Optional[List[ResearchIdeas]]
-
-
-class Methodology(BaseModel):
-    name: str
-    description: str
-    problem_statement: List[str] = Field(default_factory=list, description="Problem statements this methodology is suitable for")
-    pros: List[str] = Field(default_factory=list)
-    cons: List[str] = Field(default_factory=list)
-
-
 class FurtherResult(BaseModel):
-    problem_statements: Optional[List[ProblemStatement]] = None
-    methodologies: Optional[List[Methodology]] = None
-    research_ideas: Optional[List[ResearchIdeas]] = None
+    problem_statements: Optional[List[str]]= None
+    methodologies: Optional[List[str]] = None
 
 
 class Message(BaseModel):

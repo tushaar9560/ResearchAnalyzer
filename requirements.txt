@@ -1,0 +1,6 @@
+llama-index
+langchain
+langchain-google-gen-ai
+langchain-openai
+langchain-groq
+langchain-nvidia-ai-endpoints
